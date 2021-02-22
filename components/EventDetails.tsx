@@ -41,13 +41,10 @@ import { ReactComponent as FileIcon } from "../icons/fileIcon.svg";
 
 import {
     File,
-    Event,
     UpdateEventInput,
     useUpdateEventMutation,
     useCreateEventMutation,
     useDeleteEventMutation,
-    Maybe,
-    Message,
     useGetSharedAccessQuery,
     User,
     Calendar,
@@ -58,7 +55,7 @@ import {
 } from "../graphql/generated";
 
 import convertMStoTimeLeft from "../common/convertMSToTimeLeft";
-import { gql } from "@apollo/client";
+
 
 import TextField from "./TextField";
 import ChipsInput from "./ChipsInput";
@@ -67,33 +64,7 @@ import NumberFormatTime from "../common/NumberFormatTime";
 import { Link } from "react-router-dom";
 import EventDeleteModal from "./EventDeleteModal";
 
-
-
-
-const periodTypes = ["Minute", "Hour", "Day", "Week"];
-const periodRate = {
-    Minute: 1000 * 60,
-    Hour: 1000 * 60 * 60,
-    Day: 1000 * 60 * 60 * 24,
-    Week: 1000 * 60 * 60 * 24 * 7,
-};
-
-export const createLink = (
-    userEmail: string,
-    messageId: string | null | undefined,
-    isDone: boolean | null | undefined,
-    isDeleted: boolean | null | undefined,
-): string => {
-    if (isDone) {
-        return `/messages/done/${messageId}`;
-    } else if (isDeleted) {
-        return `/messages/deleted/${messageId}`;
-    } else {
-        return `/inbox/${userEmail}/${messageId}`;
-    }
-};
-
-
+import PdfPreview from "./PdfPreview";
 
 const EventDetails = ({
                           event,

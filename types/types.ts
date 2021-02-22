@@ -1,4 +1,4 @@
-import { Maybe, Message, User } from '../../graphql/generated';
+import { Maybe, Message, User } from '../graphql/generated';
 
 export type EventDetailsProps = {
     event?: Event;
