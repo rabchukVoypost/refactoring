@@ -19,12 +19,12 @@ import {
     InputAdornment,
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
-
+import {EventDetailsProps,NotificationItem,periodRate} from "../types/types"
 import { CloseOutlined as CloseOutlinedIcon } from "@material-ui/icons";
-
+import {useStyles} from "../styles/styles"
 import { PdfPreview } from "./";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
-
+import {createLink} from "../common/createLink"
 
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
@@ -55,7 +55,7 @@ import {
 } from "../graphql/generated";
 
 import convertMStoTimeLeft from "../common/convertMSToTimeLeft";
-
+import {messageFragment} from "../graphql/query"
 
 import TextField from "./TextField";
 import ChipsInput from "./ChipsInput";
