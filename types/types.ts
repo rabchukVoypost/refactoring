@@ -30,7 +30,6 @@ export type NotificationItem = {
     periodType: PeriodType;
 };
 
-export type ActionType = "userId" | "periodType" | "period";
 export type PeriodType = "Minute" | "Hour" | "Day" | "Week";
 
 export const periodTypes = ["Minute", "Hour", "Day", "Week"];

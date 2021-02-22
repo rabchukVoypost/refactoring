@@ -19,10 +19,10 @@ import {
     InputAdornment,
 } from "@material-ui/core";
 import MuiAlert from "@material-ui/lab/Alert";
-import {EventDetailsProps,NotificationItem,periodRate} from "../types/types"
+import {EventDetailsProps,NotificationItem,periodRate,PeriodType,periodTypes} from "../types/types"
 import { CloseOutlined as CloseOutlinedIcon } from "@material-ui/icons";
 import {useStyles} from "../styles/styles"
-import { PdfPreview } from "./";
+import { PdfPreview } from "./PdfPreview";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import {createLink} from "../common/createLink"
 
@@ -38,7 +38,7 @@ import addDays from "date-fns/addDays";
 import parse from "date-fns/parse";
 import { ReactComponent as ErrorOutlineIcon } from "../icons/errorOutline.svg";
 import { ReactComponent as FileIcon } from "../icons/fileIcon.svg";
-
+import convertTimeStringToNumber from "../common/convertTimeStringToNumber"
 import {
     File,
     UpdateEventInput,
@@ -64,7 +64,6 @@ import NumberFormatTime from "../common/NumberFormatTime";
 import { Link } from "react-router-dom";
 import EventDeleteModal from "./EventDeleteModal";
 
-import PdfPreview from "./PdfPreview";
 
 const EventDetails = ({
                           event,
@@ -144,6 +143,7 @@ const EventDetails = ({
     const [sharedDataAccess, setSharedDataAccess] = useState<
         GetSharedAccessQuery | undefined | null
         >(null);
+
     const initialEventForm: any = {
         ...message?.eventPreview,
         ...message?.eventInfo,
@@ -631,10 +631,6 @@ const EventDetails = ({
             value: moment(date).format("l"),
         });
     };
-
-    // 16:00 => 1600 for number mask
-    const convertTimeStringToNumber = (timeString: string) =>
-        timeString.split(":").join("");
 
     const link = createLink(
         currentUser.email,
